@@ -35,6 +35,10 @@ function App() {
 
   const { title, dates, duties, company } = jobs[value];
 
+  function handleClick(index) {
+    setValue(index);
+  }
+
   return (
     <section className="section">
       <div className="title">
@@ -43,6 +47,20 @@ function App() {
       </div>
       <div className="jobs-center">
         {/* btn container */}
+        <div className="btn-container">
+          {jobs.map((item, index) => {
+            return (
+              <button
+                className={`job-btn ${index === value && "active-btn"}`}
+                key={item.id}
+                onClick={() => handleClick(index)}
+              >
+                {item.company}
+              </button>
+            );
+          })}
+        </div>
+
         {/* job info */}
         <article className="job-info">
           <h3>{title}</h3>
